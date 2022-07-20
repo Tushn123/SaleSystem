@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "SaleSystem.h"
 #include "SelectView.h"
+#include "MainFrm.h"
 
 
 // CSelectView
@@ -74,22 +75,22 @@ void CSelectView::OnTvnSelchanged(NMHDR *pNMHDR, LRESULT *pResult)
 	CString itemText = m_treeCtrl->GetItemText(item);
 	if(itemText=="个人信息")
 	{
-		
+		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_A, (WPARAM)NM_A, (LPARAM)0);
 	}
 	else if(itemText=="销售管理")
 	{
-
+		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_B, (WPARAM)NM_B, (LPARAM)0);
 	}
 	else if (itemText == "库存信息")
 	{
-
+		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_C, (WPARAM)NM_C, (LPARAM)0);
 	}
 	else if (itemText == "库存增加")
 	{
-
+		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_D, (WPARAM)NM_D, (LPARAM)0);
 	}
 	else if (itemText == "库存删除")
 	{
-
+		::PostMessage(AfxGetMainWnd()->GetSafeHwnd(), NM_E, (WPARAM)NM_E, (LPARAM)0);
 	}
 }

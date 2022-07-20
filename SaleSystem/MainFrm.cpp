@@ -11,9 +11,13 @@
 
 #include <iostream>
 
+#include "UserDlg.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
+
 
 // CMainFrame
 
@@ -21,6 +25,11 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
+	ON_MESSAGE(NM_A, OnMyChange)
+	ON_MESSAGE(NM_B, OnMyChange)
+	ON_MESSAGE(NM_C, OnMyChange)
+	ON_MESSAGE(NM_D, OnMyChange)
+	ON_MESSAGE(NM_E, OnMyChange)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -71,6 +80,43 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	printf(",,,,,,");
 	std::cout << "--------------";
 
+	return 0;
+}
+
+LRESULT CMainFrame::OnMyChange(WPARAM wParam, LPARAM lParam)
+{
+	CCreateContext   Context;
+	switch (wParam)
+	{
+	case NM_A:
+		{
+			//CUserDlg类需要包含头文件#include "UserDlg.h"
+			Context.m_pNewViewClass = RUNTIME_CLASS(CUserDlg);
+			Context.m_pCurrentFrame = this;
+			Context.m_pLastView = (CFormView *)m_splitter_wnd.GetPane(0, 1);
+			m_splitter_wnd.DeleteView(0, 1);
+			m_splitter_wnd.CreateView(0, 1, RUNTIME_CLASS(CUserDlg), CSize(600, 500), &Context);
+			CUserDlg *pNewView = (CUserDlg *)m_splitter_wnd.GetPane(0, 1);
+			m_splitter_wnd.RecalcLayout();
+			pNewView->OnInitialUpdate();
+			m_splitter_wnd.SetActivePane(0, 1);
+		}
+		break;
+	case NM_B:
+		MessageBox(_T("NM_B"));
+		break;
+	case NM_C:
+		MessageBox(_T("NM_C"));
+		break;
+	case NM_D:
+		MessageBox(_T("NM_D"));
+		break;
+	case NM_E:
+		MessageBox(_T("NM_E"));
+		break;
+	default:
+		MessageBox(_T("error"));
+	}
 	return 0;
 }
 

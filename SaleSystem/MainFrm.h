@@ -4,6 +4,12 @@
 
 #pragma once
 
+#define NM_A	(WM_USER + 100)
+#define NM_B	(WM_USER + 101)
+#define NM_C	(WM_USER + 102)
+#define NM_D	(WM_USER + 103)
+#define NM_E	(WM_USER + 104)
+
 class CMainFrame : public CFrameWnd
 {
 	
@@ -35,6 +41,7 @@ protected:  // 控件条嵌入成员
 // 生成的消息映射函数
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg LRESULT OnMyChange(WPARAM wParam, LPARAM lParam);
 	DECLARE_MESSAGE_MAP()
 
 private:
